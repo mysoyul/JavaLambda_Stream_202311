@@ -90,9 +90,8 @@ public class StreamBasic {
 
         return dishes.stream() //Stream<Dish>
         .max(Comparator.comparing(Dish::getCalories)) //Optional<Dish>
-        .get();
-
-
+        //.orElse(new Dish());
+        .orElseGet(Dish::new); //() -> new Dish()
 
     }
 }
