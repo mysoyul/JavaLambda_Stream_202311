@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 public class ConsumerDemo {
 	
 	
-	public static void printAppleInfo(List<Apple> inventory,Consumer<Apple> consumer){
+	public static void printAppleInfo(List<Apple> inventory, Consumer<Apple> consumer){
 		for (Apple apple : inventory) {
 			consumer.accept(apple);
 		}
@@ -22,15 +22,21 @@ public class ConsumerDemo {
 		inventory.add(new Apple(150,"red"));
 		
 		//1. using anonymous inner class
-		
-		
+		printAppleInfo(inventory, new Consumer<Apple>() {
+            @Override
+            public void accept(Apple apple) {
+                System.out.println(apple);
+            }
+        });
 		
 		//2. lambda expression
+        printAppleInfo(inventory, apple -> {
+            apple.setWeight(apple.getWeight() + 10);
+            System.out.println("Apple = " + apple);
+        });
 
-		
-		
 		//3. Method Reference
-		
+        printAppleInfo(inventory, System.out::println);
 	}
 	
     public static class Apple {
