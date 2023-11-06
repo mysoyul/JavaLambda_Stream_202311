@@ -21,16 +21,23 @@ public class FunctionDemo {
 		inventory.add(new Apple(200, "red"));
 		inventory.add(new Apple(150, "red"));
 
+		//Apple의 Color 리스트 반환하기
 		// 1. using anonymous inner class
+		getColorList(inventory, new Function<Apple, String>() {
+			@Override
+			public String apply(Apple apple) {
+				return apple.getColor();
+			}
+		}).forEach(System.out::println);
 
-		
-
+		System.out.println("람다식");
 		// 2. lambda expression
-		
+		getColorList(inventory, apple -> apple.getColor()).forEach(System.out::println);
 
+		System.out.println("Method Reference");
 		// 3. Method Reference
 		// Function<Apple,String> function = Apple :: getColor;
-		
+		getColorList(inventory, Apple::getColor).forEach(System.out::println);
 
 	}
 
