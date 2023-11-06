@@ -30,11 +30,11 @@ public class FunctionDemo {
 			}
 		}).forEach(System.out::println);
 
-		System.out.println("람다식");
+		System.out.println("==> 람다식");
 		// 2. lambda expression
 		getColorList(inventory, apple -> apple.getColor()).forEach(System.out::println);
 
-		System.out.println("Method Reference");
+		System.out.println("==> Method Reference");
 		// 3. Method Reference
 		// Function<Apple,String> function = Apple :: getColor;
 		getColorList(inventory, Apple::getColor).forEach(System.out::println);
