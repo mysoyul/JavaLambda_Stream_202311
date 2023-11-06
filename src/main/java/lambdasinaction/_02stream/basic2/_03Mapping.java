@@ -11,10 +11,14 @@ public class _03Mapping {
     public static void main(String...args){
 
         //1. map - Dish의 name 목록만
+        List<String> nameList = menu.stream()
+                .map(Dish::getName)//dish -> dish.getName()
+                .toList();
+        System.out.println(nameList);
 
 
-
-        // map
+        //<R> Stream<R> map(Function<? super T,? extends R> mapper)
+        //<R> Stream<R> flatMap(Function<? super T,? extends Stream<? extends R>> mapper)
         List<String> words = Arrays.asList("Hello", "World");
         List<Integer> wordLengths = words.stream()
                                          .map(String::length)
@@ -22,7 +26,10 @@ public class _03Mapping {
         System.out.println(wordLengths);
 
         //2. map - 중복된 문자 제거한 word 리스트
-
+        words.stream() //Stream<String>
+                .map(word -> word.split("")) //Stream<String[]>
+                .distinct()
+                .forEach(System.out::println);
 
         //3.flatMap - 중복된 문자 제거가 word 리스트
 

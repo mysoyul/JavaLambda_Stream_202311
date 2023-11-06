@@ -29,6 +29,7 @@ public class _02Filtering {
                 .distinct()
                 .forEach(System.out::println);
 
+        System.out.println("==> limit");
         //3. Truncating 3 stream ( d.getCalories() > 300 )
         List<Dish> dishesLimit3 =
                 Dish.menu.stream()
@@ -37,9 +38,13 @@ public class _02Filtering {
                         .toList();
         dishesLimit3.forEach(System.out::println);
 
-
+        System.out.println("==> skip");
         //4. Skipping elements
-        //List<Dish> dishesSkip2 =
+        List<Dish> dishesSkip2 =
+                Dish.menu.stream()
+                        .skip(2)
+                        .toList();
+        dishesSkip2.forEach(System.out::println);
 
 
     }
