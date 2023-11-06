@@ -32,8 +32,12 @@ public class _03Mapping {
                 .forEach(System.out::println);
 
         //3.flatMap - 중복된 문자 제거가 word 리스트
-
-
+        words.stream() //Stream<String>
+                .map(word -> word.split("")) //Stream<String[]>
+                //.flatMap(wordArr -> Arrays.stream(wordArr))  //Stream<String>
+                .flatMap(Arrays::stream)
+                .distinct()
+                .forEach(System.out::println);
 
 
         // flatMap
