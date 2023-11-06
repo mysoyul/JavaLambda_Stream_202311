@@ -74,8 +74,8 @@ public class StreamBasic {
 
     //가장 칼로리가 높은 메뉴를 찾아라
     public static Dish getMaxCaloryDish (List<Dish> dishes) {
-        return null;
-
-
+        return dishes.stream() //Stream<Dish>
+                .max(Comparator.comparing(dish -> dish.getCalories())) //Optional<Dish>
+                .get();
     }
 }
