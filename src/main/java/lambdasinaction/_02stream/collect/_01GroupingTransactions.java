@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.summingDouble;
 
 public class _01GroupingTransactions {
 
@@ -49,6 +50,16 @@ public class _01GroupingTransactions {
 
         System.out.println("collectedMap = " + collectedMap);
     }
+
+    //각 트랜잭션을 통화별로 그룹화 한 다음에 해당 통화의 모든 트랜잭션 합계를 계산
+    public static void groupByCurrencySumOfValue() {
+        Map<Currency, Double> currencyDoubleMap = transactions.stream()
+                .collect(groupingBy(Transaction::getCurrency, summingDouble(Transaction::getValue)));
+
+        System.out.println("currencyDoubleMap = " + currencyDoubleMap);
+    }
+
+    //각 트랜잭션을 통화별로 그룹화 한 뒤 각 트랜잭션이 5000 이상일 경우를 구분하여 리스트로 반환
 
     public static class Transaction {
         private final Currency currency;
