@@ -3,8 +3,7 @@ package lambdasinaction._02stream.collect;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.summingDouble;
+import static java.util.stream.Collectors.*;
 
 public class _01GroupingTransactions {
 
@@ -24,7 +23,8 @@ public class _01GroupingTransactions {
     public static void main(String ... args) {
         groupImperatively();
         groupFunctionally();
-
+        groupByCurrencySumOfValue();
+        groupByCurrencyGrater5000();
     }
 
     private static void groupImperatively() {
@@ -58,8 +58,13 @@ public class _01GroupingTransactions {
 
         System.out.println("currencyDoubleMap = " + currencyDoubleMap);
     }
-
     //각 트랜잭션을 통화별로 그룹화 한 뒤 각 트랜잭션이 5000 이상일 경우를 구분하여 리스트로 반환
+    public static void groupByCurrencyGrater5000() {
+        Map<Currency, Map<Boolean, List<Transaction>>> partitionMap = transactions.stream()
+                .collect(groupingBy(Transaction::getCurrency,
+                        partitioningBy(tx -> tx.getValue() >= 5000)));
+        System.out.println("partitionMap = " + partitionMap);
+    }
 
     public static class Transaction {
         private final Currency currency;
