@@ -39,7 +39,10 @@ public class _04GroupingDishes {
 
     //3. type별로 그룹핑 후에 다시 칼로리별로 그룹핑
     private static Map<Dish.Type, Map<CaloricLevel, List<Dish>>> groupDishedByTypeAndCaloricLevel() {
-        return null;
+
+        return menu.stream()
+                .collect(groupingBy(getDishTypeFunction(),
+                                    groupingBy(getCaloricLevelFunction())));
     }
     //4. type별 갯수 카운팅
     private static Map<Dish.Type, Long> countDishesInGroups() {
@@ -69,7 +72,7 @@ public class _04GroupingDishes {
     private static Function<Dish, CaloricLevel> getCaloricLevelFunction() {
         return dish -> {
             if (dish.getCalories() <= 400) return CaloricLevel.DIET;
-            else if (dish.getCalories() <= 700) return CaloricLevel.NORMAL;
+            else if (dish.getCalories() <= 600) return CaloricLevel.NORMAL;
             else return CaloricLevel.FAT;
         };
     }
