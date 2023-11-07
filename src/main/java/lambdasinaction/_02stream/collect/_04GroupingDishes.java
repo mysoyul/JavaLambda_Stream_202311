@@ -61,9 +61,15 @@ public class _04GroupingDishes {
     private static Map<Dish.Type, Set<CaloricLevel>> caloricLevelsByType() {
         return menu.stream().collect(
                 groupingBy(getDishTypeFunction(), mapping(
-                        dish -> { if (dish.getCalories() <= 400) return CaloricLevel.DIET;
-                        else if (dish.getCalories() <= 700) return CaloricLevel.NORMAL;
-                        else return CaloricLevel.FAT; },
+                        getCaloricLevelFunction(),
                         toSet() )));
+    }
+
+    private static Function<Dish, CaloricLevel> getCaloricLevelFunction() {
+        return dish -> {
+            if (dish.getCalories() <= 400) return CaloricLevel.DIET;
+            else if (dish.getCalories() <= 700) return CaloricLevel.NORMAL;
+            else return CaloricLevel.FAT;
+        };
     }
 }
