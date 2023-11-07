@@ -1,6 +1,7 @@
 package lambdasinaction._02stream.collect;
 
 import java.util.*;
+import java.util.function.BinaryOperator;
 import java.util.function.Function;
 
 import static java.util.stream.Collectors.*;
@@ -64,9 +65,19 @@ public class _04GroupingDishes {
         return Comparator.comparingInt(Dish::getCalories);
     }
 
-    //5.1 type별 그룹에서 가장 칼로리가 높은 Dish 찾기 - collectingAndThen() 사용
+    //5.1 type별 그룹에서 가장 칼로리가 낮은 Dish 찾기 - collectingAndThen() 사용
     private static Map<Dish.Type, Dish> mostCaloricDishesByTypeWithoutOptionals() {
-        return null;
+
+//        return menu.stream()
+//                .collect(groupingBy(getDishTypeFunction(),
+//                         collectingAndThen(minBy(getDishComparator()), Optional::get)
+//                        ));
+        return menu.stream()
+                .collect(toMap(getDishTypeFunction(),
+                               Function.identity(),
+                               BinaryOperator.minBy(getDishComparator())
+                              )
+                        );
     }
 
     //6. type별로 그룹핑하여 칼로리의 합계 내기
