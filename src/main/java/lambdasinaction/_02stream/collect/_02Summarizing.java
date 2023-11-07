@@ -20,12 +20,10 @@ public class _02Summarizing {
         System.out.println("Short menu comma separated: " + getShortMenuCommaSeparated());
     }
 
-
     private static long howManyDishes() {
         return menu.stream().collect(counting());
     }
 
-    //1. Comparator 를 사용한 collect(), reducing()
     //1. Comparator 를 사용한 collect(), reducing()
     private static Dish findMostCaloricDishUsingComparator() {
         return menu.stream()
@@ -35,7 +33,9 @@ public class _02Summarizing {
 
     //collect() - reducing 사용
     private static Dish findMostCaloricDish() {
-        return menu.stream().collect(reducing((d1, d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2)).get();
+        return menu.stream()
+                .collect(reducing((d1, d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2))
+                .get();
     }
 
     //2. summingInt() 사용
