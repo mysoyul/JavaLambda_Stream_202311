@@ -40,6 +40,12 @@ public class _05Reducing {
                 .reduce(0, Integer::max);
         System.out.println("max = " + max);
 
+        //2. Stream의 max() 메서드 사용 - 최대값 구하기
+        max = numbers.stream()
+                //max(Comparator)
+                .max(Integer::compareTo) //Optional<Integer>
+                .get();
+        System.out.println("Stream max = " + max);
         //reduce -  최소값
 
 
