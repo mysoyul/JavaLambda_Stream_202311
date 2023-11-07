@@ -3,6 +3,7 @@ package lambdasinaction._02stream.basic2;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 
 public class _05Reducing {
@@ -17,12 +18,21 @@ public class _05Reducing {
                 .reduce(0, Integer::sum);
         System.out.println("sum = " + sum);
 
-        //2. IntStream의 sum() 사용 - 합계 구하기
+        //2. Stream의 mapToInt() 함수로 생성한 IntStream의 sum() 사용 - 합계 구하기
         sum = numbers.stream()
                 //mapToInt(ToIntFunction)  ToIntFunction의 추상메서드 int applyAsInt(T value)
-                .mapToInt(value -> value.intValue())  //IntStream
+                //.mapToInt(value -> value.intValue())  //IntStream
+                .mapToInt(Integer::intValue)
                 .sum();
-        System.out.println("IntStream sum = " + sum);
+        System.out.println("mapToInt() IntStream sum = " + sum);
+
+        //3. Stream의 flatMapToInt() 함수로 생성한 IntStream의 sum() 사용 - 합계 구하기
+        //IntStream flatMapToInt(Function<? super T,? extends IntStream> mapper)
+        sum = numbers.stream()
+                //.flatMapToInt(value -> IntStream.of(value))
+                .flatMapToInt(IntStream::of)
+                .sum();
+        System.out.println("flatMapToInt() IntStream sum = " + sum);
 
         //reduce -  최소값
 
