@@ -80,16 +80,20 @@ public class _04GroupingDishes {
                         );
     }
 
-    //6. type별로 그룹핑하여 칼로리의 합계 내기
+    //6. type별로 그룹핑 하여 칼로리의 합계 내기
     private static Map<Dish.Type, Integer> sumCaloriesByType() {
-        return null;
+
+        return menu.stream()
+                .collect(groupingBy(getDishTypeFunction(),
+                                    summingInt(Dish::getCalories)
+                        ));
     }
 
     private static Map<Dish.Type, Set<CaloricLevel>> caloricLevelsByType() {
         return menu.stream().collect(
-                groupingBy(getDishTypeFunction(), mapping(
-                        getCaloricLevelFunction(),
-                        toSet() )));
+                groupingBy(getDishTypeFunction(),
+                           mapping(getCaloricLevelFunction(),
+                           toSet() )));
     }
 
     private static Function<Dish, CaloricLevel> getCaloricLevelFunction() {
