@@ -72,11 +72,12 @@ public class _05Reducing {
         totalValue = menu.stream()
                 .map(Dish::getCalories)
                 .reduce(Integer::sum) //Optional<Integer>
-                .get();
+                .orElse(0);
         System.out.println("totalValue2 = " + totalValue);
 
         //3. mapToInt()사용하여 IntStream 변환하여 sum() 호출
         totalValue = menu.stream()
+                //.mapToInt(dish -> dish.getCalories())
                 .mapToInt(Dish::getCalories) //IntStream
                 .sum();
         System.out.println("totalValue3 = " + totalValue);
@@ -89,7 +90,6 @@ public class _05Reducing {
         IntSummaryStatistics statistics = menu.stream()
                 .collect(Collectors.summarizingInt(Dish::getCalories));
         System.out.println("statistics = " + statistics);
-
 
     }
 }
