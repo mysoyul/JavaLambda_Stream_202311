@@ -13,7 +13,7 @@ public class _05Reducing {
         //reduce - a + b 연산
         List<Integer> numbers = Arrays.asList(3, 4, 5, 1, 2);
         //1. reduce() 메서드 구현 - 합계 구하기
-        Integer sum = numbers.stream()
+        int sum = numbers.stream()
                 //.reduce(0, (n1, n2) -> n1 + n2);
                 .reduce(0, Integer::sum);
         System.out.println("sum = " + sum);
@@ -33,10 +33,15 @@ public class _05Reducing {
                 .flatMapToInt(IntStream::of)
                 .sum();
         System.out.println("flatMapToInt() IntStream sum = " + sum);
+        
+        //1. Stream의 reduce() 메서드 구현 - 최대값 구하기
+        int max = numbers.stream()
+                //.reduce(0, (n1,n2) -> Integer.max(n1,n2));
+                .reduce(0, Integer::max);
+        System.out.println("max = " + max);
 
         //reduce -  최소값
 
-        //reduce - 최대값
 
 
         Optional<Integer> min = numbers.stream().reduce(Integer::min);
