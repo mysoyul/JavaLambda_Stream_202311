@@ -37,8 +37,9 @@ public class _04Finding {
     }
     //4. findAny
     private static Optional<Dish> findVegetarianDish(){
-
-        return null;
+        return menu.stream()
+                .filter(Dish::isVegetarian)
+                .findAny();
     }
     
 }
