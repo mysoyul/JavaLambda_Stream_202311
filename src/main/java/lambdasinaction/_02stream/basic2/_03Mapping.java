@@ -31,7 +31,7 @@ public class _03Mapping {
                 .distinct()
                 .forEach(System.out::println);
 
-        //3.flatMap - 중복된 문자 제거가 word 리스트
+        //3.map 과 flatMap - 중복된 문자 제거가 word 리스트
         words.stream() //Stream<String>
                 .map(word -> word.split("")) //Stream<String[]>
                 //.flatMap(wordArr -> Arrays.stream(wordArr))  //Stream<String>
@@ -39,6 +39,11 @@ public class _03Mapping {
                 .distinct()
                 .forEach(System.out::println);
 
+        //flatMap - 중복된 문자 제거가 word 리스트
+        words.stream()
+                .flatMap(word -> Arrays.stream(word.split("")))
+                .distinct()
+                .forEach(System.out::println);
 
         // flatMap
         List<Integer> numbers1 = Arrays.asList(1,2,3,4,5);
