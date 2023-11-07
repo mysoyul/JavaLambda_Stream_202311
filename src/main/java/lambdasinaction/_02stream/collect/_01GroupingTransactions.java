@@ -57,6 +57,8 @@ public class _01GroupingTransactions {
                 .collect(groupingBy(Transaction::getCurrency, summingDouble(Transaction::getValue)));
 
         System.out.println("currencyDoubleMap = " + currencyDoubleMap);
+        Double sumOfGBP = currencyDoubleMap.get(Currency.GBP);
+        System.out.println("sumOfGBP = " + sumOfGBP);
     }
     //각 트랜잭션을 통화별로 그룹화 한 뒤 각 트랜잭션이 5000 이상일 경우를 구분하여 리스트로 반환
     public static void groupByCurrencyGrater5000() {
@@ -64,6 +66,10 @@ public class _01GroupingTransactions {
                 .collect(groupingBy(Transaction::getCurrency,
                         partitioningBy(tx -> tx.getValue() >= 5000)));
         System.out.println("partitionMap = " + partitionMap);
+
+        partitionMap.get(Currency.EUR) //Map
+                .get(Boolean.TRUE)
+                .forEach(System.out::println);
     }
 
     public static class Transaction {
