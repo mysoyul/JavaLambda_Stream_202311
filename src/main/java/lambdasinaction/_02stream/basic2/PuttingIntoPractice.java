@@ -30,13 +30,19 @@ public class PuttingIntoPractice{
                 .forEach(System.out::println);
 
         // Query 2: What are all the unique cities where the traders work?
-
-
-
+        List<String> cityList = transactions.stream() //Stream<Transaction>
+                .map(tx -> tx.getTrader().getCity()) //Stream<String>
+                .distinct()
+                .toList();
+        System.out.println("cityList = " + cityList);
 
         // Query 3: Find all traders from Cambridge and sort them by name.
-
-
+        transactions.stream()
+                .map(Transaction::getTrader) //Stream<Trader>
+                .filter(tr -> tr.getCity().equals("Cambridge"))
+                .distinct()
+                .sorted(comparing(Trader::getName))
+                .forEach(System.out::println);
 
         // Query 4: Return a string of all traders names sorted alphabetically.
 
