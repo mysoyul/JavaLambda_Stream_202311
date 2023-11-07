@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import lambdasinaction._02stream.basic1.Dish;
 import static lambdasinaction._02stream.basic1.Dish.menu;
 
 public class _05Reducing {
@@ -66,17 +67,20 @@ public class _05Reducing {
                 .map(Dish::getCalories) //Stream<Integer>
                 .reduce(0, (dish1, dish2) -> dish1 + dish2);
         System.out.println("totalValue = " + totalValue);
+
         //2. reduce() 함수에서 Integer.sum() 메서드 호출
         totalValue = menu.stream()
                 .map(Dish::getCalories)
                 .reduce(Integer::sum) //Optional<Integer>
                 .get();
         System.out.println("totalValue2 = " + totalValue);
+
         //3. mapToInt()사용하여 IntStream 변환하여 sum() 호출
         totalValue = menu.stream()
                 .mapToInt(Dish::getCalories) //IntStream
                 .sum();
         System.out.println("totalValue3 = " + totalValue);
+
         //4. Collectors의 summingInt() 호출
         totalValue = menu.stream()
                 .collect(Collectors.summingInt(Dish::getCalories));
@@ -85,7 +89,6 @@ public class _05Reducing {
         IntSummaryStatistics statistics = menu.stream()
                 .collect(Collectors.summarizingInt(Dish::getCalories));
         System.out.println("statistics = " + statistics);
-
 
 
     }
