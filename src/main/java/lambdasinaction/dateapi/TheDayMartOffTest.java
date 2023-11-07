@@ -9,7 +9,7 @@ import static java.time.temporal.TemporalAdjusters.*;
 public class TheDayMartOffTest {
     public static void main(String[] args) {
         LocalDate today = LocalDate.now();
-        today = LocalDate.of(2023, 7, 24);
+        today = LocalDate.of(2023, 11, 27);
         System.out.println("현재날짜 = " + today);
 
         //with(TemporalAdjuster) TemporalAdjuster의 추상메서드 Temporal adjustInto(Temporal temporal)
