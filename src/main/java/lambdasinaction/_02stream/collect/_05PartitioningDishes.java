@@ -38,9 +38,11 @@ public class _05PartitioningDishes {
     // 채식요리 중 칼로리 가장 높은 Dish, 채식요리가 아닌 것 중 칼로리 가장 높은 Dish
     private static Map<Boolean, Dish> mostCaloricPartitionedByVegetarian() {
         Map<Boolean, Dish> booleanDishMap = menu.stream()
-                .collect(partitioningBy(Dish::isVegetarian, collectingAndThen(
-                        maxBy(getDishComparator()), Optional::get
-                )));
+                .collect(partitioningBy(Dish::isVegetarian,
+                                        collectingAndThen(maxBy(getDishComparator()),
+                                                          Optional::get)
+                                       )
+                        );
         return booleanDishMap;
     }
 }
