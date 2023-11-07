@@ -42,11 +42,15 @@ public class _04GroupingDishes {
 
         return menu.stream()
                 .collect(groupingBy(getDishTypeFunction(),
-                                    groupingBy(getCaloricLevelFunction())));
+                                    groupingBy(getCaloricLevelFunction())
+                                   )
+                        );
     }
     //4. type별 갯수 카운팅
     private static Map<Dish.Type, Long> countDishesInGroups() {
-        return null;
+
+        return menu.stream()
+                .collect(groupingBy(getDishTypeFunction(), counting()));
     }
     //5. type별 그룹에서 가장 칼로리가 높은 Dish 찾기
     private static Map<Dish.Type, Optional<Dish>> mostCaloricDishesByType() {
