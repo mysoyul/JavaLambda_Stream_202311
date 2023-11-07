@@ -32,6 +32,7 @@ public class _03Sorting {
                 new Apple(120,"red")));
 
         // [Apple{color='green', weight=80}, Apple{color='red', weight=120}, Apple{color='green', weight=155}]
+        //1. Comparator 인터페이스를 구현한 AppleComparator 를 사용
         inventory.sort(new AppleComparator());
         System.out.println(inventory);
 
