@@ -33,9 +33,10 @@ public class _04GroupingDishes {
 
     //2. 칼로리별 그룹핑
     private static Map<CaloricLevel, List<Dish>> groupDishesByCaloricLevel() {
-
-        return null;
+        return menu.stream()
+                .collect(groupingBy(getCaloricLevelFunction()));
     }
+
     //3. type별로 그룹핑 후에 다시 칼로리별로 그룹핑
     private static Map<Dish.Type, Map<CaloricLevel, List<Dish>>> groupDishedByTypeAndCaloricLevel() {
         return null;
