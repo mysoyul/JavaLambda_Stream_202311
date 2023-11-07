@@ -21,11 +21,13 @@ public class PuttingIntoPractice{
                 new Transaction(alan, 2012, 950)
         );
 
-
         // Query 1: Find all transactions from year 2011 and sort them by value (small to high).
-
-
-
+        transactions.stream()
+                .filter(tx -> tx.getYear() == 2011)
+                //sorted(Comparator) Comparator comparingInt(ToIntFunction)
+                //.sorted(Comparator.comparingInt(tx -> tx.getValue()))
+                .sorted(Comparator.comparingInt(Transaction::getValue))
+                .forEach(System.out::println);
 
         // Query 2: What are all the unique cities where the traders work?
 
