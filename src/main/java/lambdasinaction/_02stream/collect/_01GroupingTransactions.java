@@ -48,7 +48,6 @@ public class _01GroupingTransactions {
                 .collect(groupingBy(Transaction::getCurrency));
 
         System.out.println("collectedMap = " + collectedMap);
-
     }
 
     public static class Transaction {
