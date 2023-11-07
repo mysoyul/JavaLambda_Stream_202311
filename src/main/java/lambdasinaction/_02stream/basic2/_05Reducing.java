@@ -11,6 +11,18 @@ public class _05Reducing {
 
         //reduce - a + b 연산
         List<Integer> numbers = Arrays.asList(3, 4, 5, 1, 2);
+        //1. reduce() 메서드 구현 - 합계 구하기
+        Integer sum = numbers.stream()
+                //.reduce(0, (n1, n2) -> n1 + n2);
+                .reduce(0, Integer::sum);
+        System.out.println("sum = " + sum);
+
+        //2. IntStream의 sum() 사용 - 합계 구하기
+        sum = numbers.stream()
+                //mapToInt(ToIntFunction)  ToIntFunction의 추상메서드 int applyAsInt(T value)
+                .mapToInt(value -> value.intValue())  //IntStream
+                .sum();
+        System.out.println("IntStream sum = " + sum);
 
         //reduce -  최소값
 
